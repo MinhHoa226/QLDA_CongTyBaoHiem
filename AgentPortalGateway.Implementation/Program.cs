@@ -1,25 +1,49 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿using System.Text;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Ocelot.Cache.CacheManager;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+using Ocelot.Provider.Eureka;
 
-// Add services to the container.
+namespace AgentPortalApiGateway;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
+    }
+    public static IWebHost BuildWebHost(string[] args)
+    {
+        return WebHost.CreateDefaultBuilder(args)
+        .UseUrls("http://localhost:8099")
+        .ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config
+     .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+     .AddJsonFile("appsettings.json", true, true)
+
+    .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true,
+    
+     true)
+     .AddJsonFile("ocelot.json", false, false)
+     .AddEnvironmentVariables();
+        })
+        .ConfigureServices(s =>
+        {
+            s.AddOcelot().AddEureka().AddCacheManager(x =>
+    x.WithDictionaryHandle());
+        })
+        .Configure(a =>
+        {
+            a.UseOcelot().Wait();
+        })
+        .Build();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
