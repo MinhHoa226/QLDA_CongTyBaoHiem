@@ -53,11 +53,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document.API", "Document.AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{B3530705-7F25-42EB-85E4-EA33CE4A2FDB}"
 	ProjectSection(SolutionItems) = preProject
-		..\postgres\postgres\createdatabases.sql = ..\postgres\postgres\createdatabases.sql
-		..\postgres\postgres\Dockerfile = ..\postgres\postgres\Dockerfile
+		postgres\createdatabases.sql = postgres\createdatabases.sql
+		postgres\Dockerfile = postgres\Dockerfile
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BlazorWasmClient", "..\BlazorWasmClient\", "{DD093E98-F8E1-3217-59DD-5ADF630C35D9}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63464"
+		Debug.AspNetCompiler.PhysicalPath = "..\BlazorWasmClient\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63464\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63464"
+		Release.AspNetCompiler.PhysicalPath = "..\BlazorWasmClient\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63464\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63464"
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_63464"
