@@ -26,6 +26,6 @@ public static class JobsInstaller
     public static void UseBackgroundJobs(this IApplicationBuilder app)
     {
         app.UseHangfireDashboard();
-        RecurringJob.AddOrUpdate<InPaymentRegistrationJob>(j => j.Run(), "*/1 * * * *");
+        //RecurringJob.AddOrUpdate<InPaymentRegistrationJob>(j => j.Run(), "*/1 * * * *");
     }
 }

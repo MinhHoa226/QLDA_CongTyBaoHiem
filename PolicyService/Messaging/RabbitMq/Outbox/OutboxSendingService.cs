@@ -43,7 +43,7 @@ public class OutboxSendingService : IHostedService
 
         try
         {
-            outbox.PushPendingMessages().Wait();
+            //outbox.PushPendingMessages().Wait();
         }
         finally
         {
